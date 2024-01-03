@@ -1,3 +1,5 @@
+#This code is part of the employment task for Asia Telecommunications company.
+
 import socket
 
 
@@ -31,3 +33,5 @@ if __name__ == '__main__':
     HOST = 'localhost'
     PORT = 12345
     start_client(HOST, PORT)
+
+#This code is part of the employment task for Asia Telecommunications company.

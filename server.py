@@ -1,3 +1,5 @@
+#This code is part of the employment task for Asia Telecommunications company.
+
 import socket
 import threading
 
@@ -35,4 +37,9 @@ if __name__ == '__main__':
     HOST = 'localhost'
     PORT = 12345
     start_server(HOST, PORT)
+
+
+
+
+#This code is part of the employment task for Asia Telecommunications company.
  
