@@ -23,11 +23,16 @@ def start_server(address, port):
     server_socket.listen(5)
     print(f"[*] Listening on {address}:{port}")
 
-
+    while True:
+        client_sock, addr = server_socket.accept()
+        print(f"[*] Accepted connection from {addr[0]}:{addr[1]}")
+        client_thread = threading.Thread(target=client_handler, args=(client_sock,))
+        client_thread.start()
 
 
 
 if __name__ == '__main__':
     HOST = 'localhost'
     PORT = 12345
+    start_server(HOST, PORT)
  
