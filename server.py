@@ -4,16 +4,33 @@ import socket
 import threading
 
 
+def separate_digits(number_str):
+    separated_digits = []
+
+    while len(number_str) > 0:
+        # گرفتن دو یا سه رقم
+        if number_str.startswith('1'):
+            separated_digits.insert(0, number_str[:3])
+            number_str = number_str[3:]
+        else:
+            separated_digits.insert(0, number_str[:2])
+            number_str = number_str[2:]
+
+    return separated_digits
+
+
 def client_handler(client_socket):
     while True:
         hex_decimal_str = client_socket.recv(4).decode('ascii')  # Assuming 4 characters for the hexadecimal input
         if not hex_decimal_str:
             break
 
-        decimal_number = int(hex_decimal_str, 16)
-        char_to_send = chr(decimal_number)
+        # استفاده از تابع جدید برای جدا کردن اعداد
+        separated_digits = separate_digits(hex_decimal_str)
 
-        client_socket.send(char_to_send.encode('ascii'))
+        # ارسال اعداد جدا شده به کلاینت
+        for digit in separated_digits:
+            client_socket.send(digit.encode('ascii'))
 
     client_socket.close()
 
