@@ -6,16 +6,14 @@ import threading
 
 def client_handler(client_socket):
     while True:
-        
-        encoded_data = client_socket.recv(1024)
-        if not encoded_data:
+        hex_decimal_str = client_socket.recv(4).decode('ascii')  # Assuming 4 characters for the hexadecimal input
+        if not hex_decimal_str:
             break
 
-        
-        decoded_data = encoded_data.decode('ascii')
+        decimal_number = int(hex_decimal_str, 16)
+        char_to_send = chr(decimal_number)
 
-        
-        client_socket.send(decoded_data.encode('ascii'))
+        client_socket.send(char_to_send.encode('ascii'))
 
     client_socket.close()
 
