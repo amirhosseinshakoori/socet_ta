@@ -8,7 +8,7 @@ def separate_digits(number_str):
     separated_digits = []
 
     while len(number_str) > 0:
-        # گرفتن دو یا سه رقم
+
         if number_str.startswith('1'):
             separated_digits.insert(0, number_str[:3])
             number_str = number_str[3:]
@@ -25,10 +25,10 @@ def client_handler(client_socket):
         if not hex_decimal_str:
             break
 
-        # استفاده از تابع جدید برای جدا کردن اعداد
+
         separated_digits = separate_digits(hex_decimal_str)
 
-        # ارسال اعداد جدا شده به کلاینت
+
         for digit in separated_digits:
             client_socket.send(digit.encode('ascii'))
 
